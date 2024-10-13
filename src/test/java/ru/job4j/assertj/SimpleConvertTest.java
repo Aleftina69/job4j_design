@@ -31,7 +31,6 @@ class SimpleConvertTest {
                 .startsWith("first", "second")
                 .last().isNotNull()
                 .isEqualTo("five");
-
     }
 
     @Test
