@@ -18,8 +18,8 @@ class NameLoadTest {
         assertThatThrownBy(() -> nameLoad.parse())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("Names array is empty");
-
     }
+
     @Test
     void checkParseEqualSign() {
         NameLoad nameLoad = new NameLoad();
@@ -46,5 +46,5 @@ class NameLoadTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("this name: %s does not contain a value".formatted(name));
     }
-
 }
+
