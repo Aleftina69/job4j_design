@@ -3,6 +3,7 @@ package ru.job4j.collection;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class ForwardLinked<T> implements Iterable<T> {
     private int size;
@@ -31,10 +32,8 @@ public class ForwardLinked<T> implements Iterable<T> {
     }
 
     public T get(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
-        }
-        ForwardLinked.Node<T> current = head;
+        Objects.checkIndex(index, size);
+        Node<T> current = head;
         for (int i = 0; i < index; i++) {
             current = current.next;
         }
@@ -45,8 +44,10 @@ public class ForwardLinked<T> implements Iterable<T> {
         if (head == null) {
             throw new NoSuchElementException();
         }
-        T element = head.item;
-        head = head.next;
+        Node<T> headOld = head;
+        T element = headOld.item;
+        head = headOld.next;
+        headOld.next = null;
         size--;
         modCount++;
         return element;
