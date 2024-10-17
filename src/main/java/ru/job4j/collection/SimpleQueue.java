@@ -9,15 +9,15 @@ public class SimpleQueue<T> {
     private int outputSize = 0;
 
     public T poll() {
+        if (inputSize == 0 && outputSize == 0) {
+            throw new NoSuchElementException("Queue is empty");
+        }
         if (outputSize == 0) {
             while (inputSize > 0) {
                 output.push(input.pop());
                 inputSize--;
                 outputSize++;
             }
-        }
-        if (outputSize == 0) {
-            throw new NoSuchElementException("Queue is empty");
         }
         outputSize--;
         return output.pop();
