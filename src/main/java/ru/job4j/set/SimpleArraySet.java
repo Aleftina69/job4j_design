@@ -4,6 +4,7 @@ import ru.job4j.collection.SimpleArrayList;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Set;
 
 public class SimpleArraySet<T> implements SimpleSet<T> {
@@ -25,7 +26,7 @@ public class SimpleArraySet<T> implements SimpleSet<T> {
         boolean result = false;
         for (int i = 0; i < set.size(); i++) {
             T element = set.get(i);
-            if ((element == null && value == null) || (element != null && element.equals(value))) {
+            if (Objects.equals(element, value)) {
                 result = true;
             }
         }
