@@ -18,7 +18,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(name, children, birthday);
     }
 
     @Override
@@ -52,6 +52,8 @@ public class User {
         System.out.printf("UserFirst - хэш-код : %s, хэш : %s, бакет : %s", hashCodeFirst, hashFirst, backetFirst);
         System.out.println();
         System.out.printf("UserSecond- хэш-код : %s, хэш : %s, бакет : %s", hashCodeSecond, hashSecond, backetSecond);
+        System.out.println();
+        System.out.println(userFirst.equals(userSecond));
 
     }
 }
