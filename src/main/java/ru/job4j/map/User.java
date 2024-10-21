@@ -23,16 +23,7 @@ public class User {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        User user = (User) obj;
-        return children == user.children
-                && Objects.equals(name, user.name)
-                && Objects.equals(birthday, user.birthday);
+        return super.equals(obj);
     }
 
     public static void main(String[] args) {
