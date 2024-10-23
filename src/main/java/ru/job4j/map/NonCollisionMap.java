@@ -95,7 +95,7 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
         return indexFor(hash);
     }
 
-    private boolean keyComparison (K key1, K key2) {
+    private boolean keyComparison(K key1, K key2) {
            return Objects.hashCode(key1) == Objects.hashCode(key2)
                    && Objects.equals(key1, key2);
     }
