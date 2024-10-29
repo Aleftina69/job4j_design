@@ -45,3 +45,4 @@ public class User {
         return id == user.id && Objects.equals(name, user.name);
         }
 }
+

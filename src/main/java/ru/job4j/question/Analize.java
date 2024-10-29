@@ -16,10 +16,9 @@ public class Analize {
         }
        int added = 0;
        int changed = 0;
-
-      Iterator<User> curIterator = current.iterator();
-      while (curIterator.hasNext()) {
-          User user = curIterator.next();
+       Iterator<User> curIterator = current.iterator();
+       while (curIterator.hasNext()) {
+           User user = curIterator.next();
            String prName = pr.remove(user.getId());
            if (prName == null) {
                added++;
