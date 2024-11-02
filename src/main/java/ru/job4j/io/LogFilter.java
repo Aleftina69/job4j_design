@@ -1,8 +1,7 @@
 package ru.job4j.io;
 
 import javax.imageio.IIOException;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
@@ -30,9 +29,20 @@ public class LogFilter {
         return Collections.emptyList();
     }
 
+    public void saveTo(String out) {
+        var data = filter();
+        try (PrintWriter printWriter = new PrintWriter(new FileWriter(out))) {
+            for (String str : data) {
+                printWriter.println(str);
+            }
+        } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
     public static void main(String[] args) {
         LogFilter logFilter = new LogFilter("data/log.txt");
         logFilter.filter().forEach(System.out::println);
-
     }
 }
