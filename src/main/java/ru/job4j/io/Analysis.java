@@ -12,19 +12,19 @@ public class Analysis {
             String startTime = null;
             for (String line : Files.readAllLines(Path.of(source))) {
                 String[] str = line.split(" ");
-                    String status = str[0];
-                    String time = str[1];
-                    if ("400".equals(status) || "500".equals(status)) {
-                        if (startTime == null) {
-                            startTime = time;
-                        }
-                    } else {
-                        if (startTime != null) {
-                            printWriter.printf("%s;%s%n", startTime, time);
-                            startTime = null;
-                        }
+                String status = str[0];
+                String time = str[1];
+                if ("400".equals(status) || "500".equals(status)) {
+                    if (startTime == null) {
+                        startTime = time;
+                    }
+                } else {
+                    if (startTime != null) {
+                        printWriter.printf("%s;%s%n", startTime, time);
+                        startTime = null;
                     }
                 }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
