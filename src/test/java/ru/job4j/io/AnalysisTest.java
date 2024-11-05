@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import java.io.*;
 import java.nio.file.Path;
-import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class AnalysisTest {
@@ -20,15 +19,15 @@ class AnalysisTest {
             output.println("500 11:01:02");
             output.println("200 11:02:02");
         }
-        File target  = tempDir.resolve("target.txt").toFile();
+        File target = tempDir.resolve("target.txt").toFile();
         Analysis analysis = new Analysis();
         analysis.unavailable(source.getAbsolutePath(), target.getAbsolutePath());
         StringBuilder result = new StringBuilder();
         try (BufferedReader input = new BufferedReader(new FileReader(target))) {
             input.lines().forEach(result::append);
         }
-        String expected = "10:57:01;10:59:01" + System.lineSeparator() +
-                          "11:01:02;11:02:02" + System.lineSeparator();
+        String expected = "10:57:01;10:59:01" + System.lineSeparator()
+                        + "11:01:02;11:02:02" + System.lineSeparator();
         assertThat(result.toString().equals(expected));
     }
 
@@ -43,15 +42,15 @@ class AnalysisTest {
             output.println("500 11:01:02");
             output.println("200 11:02:02");
         }
-        File target  = tempDir.resolve("target.txt").toFile();
+        File target = tempDir.resolve("target.txt").toFile();
         Analysis analysis = new Analysis();
         analysis.unavailable(source.getAbsolutePath(), target.getAbsolutePath());
         StringBuilder result = new StringBuilder();
         try (BufferedReader input = new BufferedReader(new FileReader(target))) {
             input.lines().forEach(result::append);
         }
-        String expected = "10:57:01;11:59:01" + System.lineSeparator() +
-                          "11:01:02;11:00:02" + System.lineSeparator();
+        String expected = "10:57:01;11:59:01" + System.lineSeparator()
+                        + "11:01:02;11:00:02" + System.lineSeparator();
         assertThat(result.toString()).isNotEqualTo(expected);
     }
 }
