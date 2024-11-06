@@ -31,6 +31,30 @@ class ConfigTest {
     }
 
     @Test
+    void whenInvalid1Pattern() {
+        String path = "./data/invalid_pattern1.properties";
+        Config config = new Config(path);
+        assertThatThrownBy(config::load)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void whenInvalid2Pattern() {
+        String path = "./data/invalid_pattern2.properties";
+        Config config = new Config(path);
+        assertThatThrownBy(config::load)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void whenInvalid3Pattern() {
+        String path = "./data/invalid_pattern3.properties";
+        Config config = new Config(path);
+        assertThatThrownBy(config::load)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void whenKeyWithMultipleEquals() {
         String path = "./data/pair_with_multiple_equals.properties";
         Config config = new Config(path);

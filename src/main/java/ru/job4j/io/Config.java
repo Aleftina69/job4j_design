@@ -22,7 +22,7 @@ public class Config {
                     .filter(line -> !line.startsWith("#") && !line.isEmpty())
                     .forEach(line -> {
                         String[] parts = line.split("=", 2);
-                        if (parts.length != 2) {
+                        if (parts.length != 2 || parts[0].trim().isEmpty() || parts[1].trim().isEmpty()) {
                             throw new IllegalArgumentException();
                         }
                         values.put(parts[0].trim(), parts[1].trim());
