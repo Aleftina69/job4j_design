@@ -14,7 +14,8 @@ public class Dir {
         System.out.println(String.format("Размер родительской директории: %s", file.getTotalSpace()));
         System.out.println(String.format("Имя родительской директории: %s", file.getName()));
         for (File subfile : file.listFiles()) {
-            System.out.println(String.format(subfile.getName() + ":" + subfile.length()));
+            System.out.println(String.format("Имя директории : %s", subfile.getName()));
+            System.out.println(String.format("Размер диркетории : %s", subfile.length()));
         }
     }
 }
