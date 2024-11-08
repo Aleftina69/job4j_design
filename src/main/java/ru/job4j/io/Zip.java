@@ -31,6 +31,7 @@ public class Zip {
             e.printStackTrace();
         }
     }
+
     public static void main(String[] args) {
         Zip zip = new Zip();
         zip.packSingleFile(
