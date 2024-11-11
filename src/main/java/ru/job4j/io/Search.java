@@ -19,6 +19,12 @@ public class Search {
         foundPaths.forEach(System.out::println);
     }
 
+    public static List<Path> search(Path root, Predicate<Path> condition) throws IOException {
+        SearchFiles searcher = new SearchFiles(condition);
+        Files.walkFileTree(root, searcher);
+        return searcher.getList();
+    }
+
     public static void validateArgs(String[] args) {
         if (args.length < 2) {
             throw new IllegalArgumentException();
