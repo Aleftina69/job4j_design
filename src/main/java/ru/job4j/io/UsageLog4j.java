@@ -16,7 +16,8 @@ public class UsageLog4j {
      long l = 345676744L;
      float f = 234564.123555F;
      byte b = 16;
-     LOG.debug("name : {}, age : {}, weightKg : {}, chidren : {}, gender : {}, l : {}, f : {}, b : {} ",
-             name, age, weightKg, chidren, gender, l, f, b);
+     short sh = 55;
+     LOG.debug("name : {}, age : {}, weightKg : {}, chidren : {}, gender : {}, l : {}, f : {}, b : {} , sh : {} ",
+             name, age, weightKg, chidren, gender, l, f, b, sh);
     }
 }
