@@ -23,6 +23,8 @@ public class EchoServer {
                         output.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                         output.flush();
                     }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         }
