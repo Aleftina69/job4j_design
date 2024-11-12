@@ -1,0 +1,9 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<user name="Ivan" age="35" children="true">
+    <contact phone="79371345678"/>
+    <families>
+        <family>wife</family>
+        <family>son</family>
+        <family>daughter</family>
+    </families>
+</user>
