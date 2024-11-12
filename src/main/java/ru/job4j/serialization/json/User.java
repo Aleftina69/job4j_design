@@ -17,6 +17,18 @@ public class User {
         this.family = family;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public boolean getChildren() {
+        return children;
+    }
+
     @Override
     public String toString() {
         return "Person{"
