@@ -7,44 +7,43 @@ create table products
     price integer
 );
 
-create trigger tax_trigger
-    after insert
-    on products
-    referencing new table as inserted
-    for each statement
-    execute procedure tax();
-
 create
-or replace function tax()
+or replace function tax_after()
     returns trigger as
 $$
     BEGIN
         update products
         set price = price * 1.2
-        where id = (select id from inserted)
+        where id = (select id from inserted);
+        return new;
+    END;
+$$
+LANGUAGE 'plpgsql';
+
+create trigger tax_after_trigger
+    after insert
+    on products
+    referencing new table as
+    inserted
+    for each statement
+    execute procedure tax_after();
+
+create
+or replace function tax_before()
+    returns trigger as
+$$
+    BEGIN
+        NEW.price := NEW.price * 1.2;
         return NEW;
     END;
 $$
 LANGUAGE 'plpgsql';
 
-create trigger tax1_trigger
+create trigger tax_before_trigger
     before insert
     on products
     for each row
-    execute procedure tax1();
-
-create
-or replace function tax1()
-    returns trigger as
-$$
-    BEGIN
-        update products
-        set price = price * 1.2
-        AND id = new.id;
-        return NEW;
-    END;
-$$
-LANGUAGE 'plpgsql';
+    execute procedure tax_before();
 
 create table history_of_price
 (
@@ -53,12 +52,6 @@ create table history_of_price
     price integer,
     date timestamp
 );
-
-create trigger after_insert_log_price
-    after insert
-    on products
-    for each row
-    execute procedure log_price_history();
 
 create
 or replace function log_price_history()
@@ -71,3 +64,9 @@ $$
     END;
 $$
 LANGUAGE 'plpgsql';
+
+create trigger after_insert_log_price
+    after insert
+    on products
+    for each row
+    execute procedure log_price_history();
