@@ -5,6 +5,7 @@ create table customers(
     age        int,
     country    text
 );
+
 insert into customers (first_name, last_name, age, country)
 values ('Ivan', 'Ivanov', 30, 'Russia'),
        ('Anna', 'Petrova', 27, 'China'),
