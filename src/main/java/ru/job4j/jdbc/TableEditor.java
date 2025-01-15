@@ -1,5 +1,6 @@
 package ru.job4j.jdbc;
 
+import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
 import java.util.StringJoiner;
@@ -75,6 +76,44 @@ public class TableEditor implements AutoCloseable {
     public void close() throws Exception {
         if (connection != null) {
             connection.close();
+        }
+    }
+
+    public static void main(String[] args) {
+        Properties config = new Properties();
+        try (InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("app.properties")) {
+            config.load(in);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try (TableEditor editor = new TableEditor(config)) {
+            String tableName = "test_table";
+
+            editor.createTable(tableName);
+            System.out.println("Таблица создана:");
+            System.out.println(editor.getTableScheme(tableName));
+
+            editor.addColumn(tableName, "id", "SERIAL PRIMARY KEY");
+            System.out.println("Столбец 'id' добавлен:");
+            System.out.println(editor.getTableScheme(tableName));
+
+            editor.addColumn(tableName, "name", "VARCHAR(255)");
+            System.out.println("Столбец 'name' добавлен:");
+            System.out.println(editor.getTableScheme(tableName));
+
+            editor.renameColumn(tableName, "name", "full_name");
+            System.out.println("Столбец 'name' переименован в 'full_name':");
+            System.out.println(editor.getTableScheme(tableName));
+
+            editor.dropColumn(tableName, "full_name");
+            System.out.println("Столбец 'full_name' удален:");
+            System.out.println(editor.getTableScheme(tableName));
+
+            editor.dropTable(tableName);
+            System.out.println("Таблица удалена:");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
