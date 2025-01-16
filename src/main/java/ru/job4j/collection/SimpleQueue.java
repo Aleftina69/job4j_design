@@ -31,4 +31,9 @@ public class SimpleQueue<T> {
     public int size() {
         return inputSize + outputSize;
     }
+
+    public boolean isEmpty() {
+        return inputSize == 0 && outputSize == 0;
+    }
 }
+
