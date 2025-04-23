@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class TreeUtilsTest {
     private TreeUtils<Integer> treeUtils;
-    private Node<Integer> tree = new Node<>(1,
+    private final Node<Integer> tree = new Node<>(1,
             new Node<>(2,
                     new Node<>(4,
                             new Node<>(8, new Node<>(16), new Node<>(17)),
