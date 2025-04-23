@@ -39,4 +39,3 @@ public class Node<E> {
         this.children = children;
     }
 }
-

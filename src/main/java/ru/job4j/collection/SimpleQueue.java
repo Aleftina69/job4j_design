@@ -36,3 +36,4 @@ public class SimpleQueue<T> {
         return inputSize == 0 && outputSize == 0;
     }
 }
+

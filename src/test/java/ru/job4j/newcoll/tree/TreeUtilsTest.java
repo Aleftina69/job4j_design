@@ -49,4 +49,3 @@ class TreeUtilsTest {
         assertThatThrownBy(() -> treeUtils.findAll(null)).isInstanceOf(IllegalArgumentException.class);
     }
 }
-
